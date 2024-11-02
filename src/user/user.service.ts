@@ -13,16 +13,13 @@ export class UserService {
     console.log('getting user', id);
     try {
       const user = await this.userModel.findOne({ _id: id }).exec();
-      console.log('🚀 ~ UserService ~ getUser ~ user:', JSON.stringify(user));
       if (user) {
         const userObj = user.toJSON();
-        console.log('🚀 ~ UserService ~ getUser ~ userObj:', userObj);
         const response = {
           id: userObj._id.toString(),
           name: userObj.name,
           email: userObj.email,
         };
-        console.log('🚀 ~ UserService ~ getUser ~ response:', response);
         return response;
       }
       return null;
